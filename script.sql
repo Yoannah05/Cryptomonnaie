@@ -1,15 +1,18 @@
+CREATE DATABASE crypto;
+
+\c crypto;
 CREATE TABLE Utilisateur(
    id_utilisateur SERIAL,
    email VARCHAR(255) ,
    nom VARCHAR(50) ,
-   prénom VARCHAR(50) ,
+   prenom VARCHAR(50) ,
    PRIMARY KEY(id_utilisateur)
 );
 
 CREATE TABLE TransactionMonnaie(
    id_transaction SERIAL,
    montant MONEY,
-   isEntrée BOOLEAN,
+   isEntree BOOLEAN,
    id_utilisateur INTEGER NOT NULL,
    PRIMARY KEY(id_transaction),
    FOREIGN KEY(id_utilisateur) REFERENCES Utilisateur(id_utilisateur)
@@ -18,7 +21,7 @@ CREATE TABLE TransactionMonnaie(
 CREATE TABLE Transaction_Crypto(
    id_transaction_crypto SERIAL,
    montant MONEY NOT NULL,
-   isEntrée VARCHAR(50) ,
+   isEntree VARCHAR(50) ,
    PRIMARY KEY(id_transaction_crypto)
 );
 
