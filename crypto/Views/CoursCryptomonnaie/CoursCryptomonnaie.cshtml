@@ -1,0 +1,65 @@
+@{
+    ViewData["Title"] = "Cours des Cryptomonnaies";
+}
+
+<h2>Cours des Cryptomonnaies en Temps Réel</h2>
+
+<div id="crypto-container" class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Cryptomonnaie</th>
+                <th>Symbole</th>
+                <th>Cours (USD)</th>
+            </tr>
+        </thead>
+        <tbody id="crypto-data">
+            <tr>
+                <td colspan="3" class="text-center">Chargement des données...</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    // Fonction pour récupérer les cours des cryptomonnaies
+    /*
+    async function fetchCryptoData() {
+        try {
+            // Récupérer les cours des cryptos
+            const response = await fetch('/Crypto/getCoursActuels');
+            if (!response.ok) throw new Error('Erreur lors de la récupération des données.');
+
+            const data = await response.json();
+
+            // Remplace le contenu de la table par les données récupérées
+            const tbody = document.getElementById('crypto-data');
+            tbody.innerHTML = ''; // Nettoyer le contenu précédent
+
+            data.forEach(crypto => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${crypto.nom}</td>
+                    <td>${crypto.symbole}</td>
+                    <td>${crypto.cours_usd}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        } catch (error) {
+            console.error(error);
+            const tbody = document.getElementById('crypto-data');
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="3" class="text-center text-danger">Impossible de récupérer les données.</td>
+                </tr>
+            `;
+        }
+    }
+    */
+
+    // Met à jour les données toutes les 10 secondes
+    setInterval(fetchCryptoData, 15000);
+
+    // Charger les données au démarrage
+    fetchCryptoData();
+</script>
