@@ -1,0 +1,36 @@
+@{
+    ViewData["Title"] = "Dépôt/Retrait Cryptomonnaie";
+}
+
+<h2>Dépôt/Retrait Cryptomonnaie</h2>
+
+<form method="post" action="/Transaction/DepotRetrait">
+    <div class="form-group">
+        <label for="typeOperation">Type d'opération</label>
+        <select id="typeOperation" name="typeOperation" class="form-control" required>
+            <option value="">-- Sélectionnez --</option>
+            <option value="depot">Dépôt</option>
+            <option value="retrait">Retrait</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="crypto">Cryptomonnaie</label>
+        <select id="crypto" name="crypto" class="form-control" required>
+            <option value="">-- Sélectionnez une cryptomonnaie --</option>
+            <option value="btc">Bitcoin (BTC)</option>
+            <option value="eth">Ethereum (ETH)</option>
+            <option value="usdt">Tether (USDT)</option>
+            <!-- Ajoutez d'autres cryptomonnaies si nécessaire -->
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="montant">Montant (en USD)</label>
+        <input type="number" id="montant" name="montant" class="form-control" placeholder="Entrez le montant" required min="0.01" step="0.01">
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Soumettre</button>
+    </div>
+</form>
