@@ -1,0 +1,50 @@
+@{
+    ViewData["Title"] = "Cours Actuels";
+}
+
+<div class="container">
+    <h1 class="text-center">Cours Actuels des Cryptomonnaies</h1>
+    <button id="loadCours" class="btn btn-primary">Charger les Cours</button>
+    <table class="table table-bordered mt-3">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Symbole</th>
+                <th>Cours (USD)</th>
+            </tr>
+        </thead>
+        <tbody id="cryptoTableBody">
+            <!-- Les données seront insérées ici -->
+        </tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#loadCours').click(function () {
+            $.ajax({
+                url: '/Crypto/getCoursActuels',
+                method: 'GET',
+                success: function (data) {
+                    // Vider le tableau avant d'insérer de nouvelles données
+                    $('#cryptoTableBody').empty();
+
+                    // Parcourir les données et les insérer dans le tableau
+                    data.forEach(function (crypto) {
+                        $('#cryptoTableBody').append(`
+                            <tr>
+                                <td>${crypto.nom}</td>
+                                <td>${crypto.symbole}</td>
+                                <td>${crypto.coursUSD.toFixed(2)}</td>
+                            </tr>
+                        `);
+                    });
+                },
+                error: function (error) {
+                    console.error('Erreur lors de la récupération des cours:', error);
+                }
+            });
+        });
+    });
+</script>
